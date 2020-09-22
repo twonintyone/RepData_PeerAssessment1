@@ -3,7 +3,7 @@ title: "Course Project One"
 author: "twonintyone"
 date: "9/21/2020"
 output: 
-    html_document:
+  html_document:
     keep_md: true
 ---
 
@@ -37,6 +37,8 @@ ggplot(daily_steps, aes(x = steps)) +
     labs(x = "Total number of steps per day", y = "Frequency", title = "Distribution of total number of steps per day")
 ```
 
+![plot of chunk of plot1](figure/plot1.png)
+
 ```{r Q1 - summary stat}
 mean_step <- round(mean(daily_steps$steps))
 med_step <- round(median(daily_steps$steps))
@@ -56,6 +58,8 @@ avg_steps_per_int <- aggregate(steps ~ interval, activ1, mean)
 # Time series plot
 with(avg_steps_per_int, plot(y = steps, x = interval, type = "l", main = "Average number of steps across intervals", xlab = "Time intervals", ylab = "Average number of steps"))
 ```
+
+![plot of chunk plot2](figure/plot2.png)
 
 ```{r Q2 - max no}
 Q2 <- avg_steps_per_int[which.max(avg_steps_per_int$steps),]
@@ -90,6 +94,8 @@ activ_date <- aggregate(steps ~ date, activ, sum)
 ggplot(activ_date, aes(x = steps)) + geom_histogram(color = "red", fill = NA, binwidth = 2500) + theme_classic() + labs(x = "Steps per day", y = "Frequency", title = "Distribution of total number of steps per day (imputed)")
 ```
 
+![plot of chunk plot3](figure/plot3.png)
+
 ```{r imputed stat}
 mean(activ_date$steps)
 median(activ_date$steps)
@@ -119,6 +125,8 @@ ggplot(steps_by_daytype, aes(interval, steps)) +
     theme_bw() + facet_grid(daytype~.) + 
     labs(x = "Interval", y = "Number of steps", title = "Number of steps per intervals by day type")
 ```
+
+![plot of chunk plot4](figure/plot4.png)
 
 We can see a subtle difference in the activity patterns between weekdays and weekends. It appears that the user would have smaller but more frequent movements during the weekend, whereas the movements spiked on the weekday mornings and follow with less regular and consistent movements.
 
